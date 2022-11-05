@@ -1,0 +1,23 @@
+{
+  "name": "citntic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-fe": "npm install --prefix ./fe",
+    "install-be": "npm install --prefix ./be",
+    "build": "",
+    "build-fe": "",
+    "build-be": "",
+    "dev": "concurrently \"npm --prefix ./fe run-script start\" \"npm --prefix ./be run-script start:dev\"",
+    "be-dev": "npm --prefix ./be run-script start:dev",
+    "fe-dev": "npm --prefix ./fe run-script start",
+    "run-prod": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}
