@@ -1,0 +1,41 @@
+@import "../../index.scss";
+
+footer {
+  position: fixed;
+  max-width: $max-width;
+  bottom: 0;
+  width: 100%;
+  background: var(--main-background-color);
+}
+
+.footer {
+  box-sizing: border-box;
+  @include flex-center;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 2px solid var(--btn-border-color);
+
+  a {
+    text-decoration: none;
+    color: blueviolet;
+  }
+
+  .footer__btn_theme_light,
+  .footer__btn_theme_dark {
+    font-size: 18px;
+    outline: 0;
+    width: 80px;
+    height: 40px;
+    background: var(--btn-background-color);
+    color: var(--btn-font-color);
+    border: 1px solid var(--btn-border-color);
+    border-radius: 20px;
+    margin: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

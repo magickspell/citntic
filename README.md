@@ -17,7 +17,7 @@
 
 <hr>
 
-## How to start locally:
+## How to start app locally:
 1) `git clone`
 2) `npm run-script install-fe`
 3) `npm run-script install-be`

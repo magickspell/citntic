@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {MainPage} from "./views/MainPage/MainPage";
+import "normalize.css";
+import './index.scss';
+import {Navbar} from "./components/Navbar/Navbar";
+import {Footer} from "./components/Footer/Footer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+    useEffect(() => {
+        document.body.classList.add(theme === 'light' ? 'theme-light' : 'theme-dark')
+        document.body.classList.remove(theme === 'light' ? 'theme-dark' : 'theme-light')
+    }, [theme])
+
+    return (
+        <div
+            className={"wrapper"}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Navbar/>
+
+            <MainPage/>
+
+            <Footer
+                theme={theme}
+                setTheme={setTheme}
+            />
+        </div>
+    );
 }
 
 export default App;
