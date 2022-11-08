@@ -1,0 +1,81 @@
+@import "../../index.scss";
+
+.wrapper_quotes-page {
+  font-size: 20px;
+
+  .quotes-page__content {
+    .quotes-page__content__text {
+      p {
+        margin: 0;
+        padding: 16px;
+      }
+    }
+
+    .quotes-page__content__grid {
+      .quotes-page__content__list {
+        @include flex-center;
+
+        .quotes-page__content__list__item {
+          display: grid;
+          grid-template-columns: 10fr 2fr;
+          width: 100%;
+          border: 2px solid white;
+          border-radius: 16px;
+          margin-bottom: 8px;
+          padding: 8px;
+          background: lightgray;
+          color: black;
+
+          article {
+            @include flex-center;
+            align-items: flex-start;
+            p {
+              margin: 0;
+            }
+            i {}
+          }
+
+          .quotes-page__content__list__item__btns {
+            @include flex-center;
+            align-items: flex-start;
+            justify-content: flex-start;
+            .quotes-page__content__list__item__btns_like,
+            .quotes-page__content__list__item__btns_dislike {
+              @include flex-center;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-bottom: 4px;
+              font-size: 18px;
+
+              button {
+                width: 32px;
+                height: 32px;
+                cursor: pointer;
+                border: none;
+                border-radius: 50%;
+                background: darkseagreen;
+                transition: 0.3s;
+                opacity: 0.59;
+
+                &:hover {
+                  opacity: 1;
+                }
+              }
+            }
+            .quotes-page__content__list__item__btns_dislike {
+              button {
+                background: lightcoral;
+              }
+            }
+            p {
+              margin: 0;
+            }
+            button {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
