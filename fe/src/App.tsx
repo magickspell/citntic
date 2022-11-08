@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {MainPage} from "./views/MainPage/MainPage";
 import "normalize.css";
 import './index.scss';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Footer} from "./components/Footer/Footer";
+import {BrowserRouter, Routes, useNavigate} from "react-router-dom";
+import {Router} from "./app/Router/Router";
 
-function App() {
+export const App = () => {
+
+    const navigate = useNavigate()
 
     const [theme, setTheme] = useState<'light' | 'dark'>('dark')
     useEffect(() => {
@@ -13,20 +16,31 @@ function App() {
         document.body.classList.remove(theme === 'light' ? 'theme-dark' : 'theme-light')
     }, [theme])
 
+    const [page, setPage] = useState<string>(document.location.pathname)
+
+    function HandlePage(path: string): void {
+        setPage(path)
+        navigate(path)
+    }
+
     return (
         <div
             className={"wrapper"}
         >
-            <Navbar/>
+            <Navbar
+                page={page}
+                HandlePage={HandlePage}
+            />
 
-            <MainPage/>
+            <Router/>
 
             <Footer
                 theme={theme}
                 setTheme={setTheme}
+                page={page}
+                HandlePage={HandlePage}
             />
         </div>
+
     );
 }
-
-export default App;

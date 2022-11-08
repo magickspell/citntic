@@ -33,11 +33,6 @@ export const MainPage = () => {
                                 rows={4}
                             />
                             <form>
-                                <button onClick={(e) => {
-                                    e.preventDefault()
-                                    submitQuestion()
-                                }}>Ask
-                                </button>
                                 <input
                                     placeholder={"input question"}
                                     type="text"
@@ -46,6 +41,11 @@ export const MainPage = () => {
                                         setQuestion(e.currentTarget.value)
                                     }}
                                 />
+                                <button onClick={(e) => {
+                                    e.preventDefault()
+                                    submitQuestion()
+                                }}>Ask
+                                </button>
                             </form>
                         </div>
                     </div>

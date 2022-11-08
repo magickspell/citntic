@@ -34,6 +34,8 @@ body {
   display: grid;
   grid-auto-rows: 80px max-content 80px;
   height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 nav {
@@ -68,6 +70,11 @@ nav button {
 }
 nav button:hover {
   transform: scale(1.1);
+}
+nav button.active {
+  background: goldenrod;
+  color: black;
+  border: 2px solid black;
 }
 
 /*# sourceMappingURL=navbar.css.map */
