@@ -4,7 +4,8 @@
 /fe/dist
 /fe/build
 /be/build
-
+/be/.env
+/fe/.env
 
 
 ### FE ###
@@ -27,6 +28,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 npm-debug.log*
 yarn-debug.log*

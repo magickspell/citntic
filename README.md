@@ -24,3 +24,5 @@
 4) `npm run-script dev`
 
 <hr>
+
+![Demo gif](./bender.gif)

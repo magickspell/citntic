@@ -19,5 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^7.5.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }
