@@ -1,9 +1,40 @@
-import React, {useState} from "react";
-
+import React, {useEffect, useState} from "react";
+import io from 'socket.io-client';
 
 require('./chat-page.scss')
 
+const socket = io('http://localhost:4080/chat', {transports: ['websocket']});
+
 export const ChatPage = () => {
+
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [lastPong, setLastPong] = useState<null | string>(null);
+
+    useEffect(() => {
+        socket.on('connect', () => {
+            setIsConnected(true);
+        });
+
+        socket.on('disconnect', () => {
+            setIsConnected(false);
+        });
+
+        socket.on('pong', () => {
+            setLastPong(new Date().toISOString());
+        });
+
+        return () => {
+            socket.off('connect');
+            socket.off('disconnect');
+            socket.off('pong');
+        };
+    }, []);
+
+    const sendPing = () => {
+        socket.emit('ping');
+        console.log(isConnected)
+        console.log(lastPong)
+    }
 
     const [chat, setChat] = useState<string[]>(['are u winning son?'])
 
@@ -42,6 +73,7 @@ export const ChatPage = () => {
                                 <button className={"chat-page__content__grid__answer__btn"}
                                         onClick={(e) => {
                                             e.preventDefault()
+                                            sendPing()
                                         }}
                                 >
                                     {"send"}
