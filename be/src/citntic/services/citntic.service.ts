@@ -17,9 +17,19 @@ export class CitnticService {
         return this.quoteModel.find().exec()
     }
 
-    async getRandom(): Promise<Quote> {
+    random = 999
+    async getRandom(random = this.random): Promise<Quote> {
+        function randomLoop() {
+            const result = Math.floor(Math.random() * data.length)
+            if (result === random) {
+                return randomLoop()
+            } else {
+                return result
+            }
+        }
         const data = await this.quoteModel.find().exec()
-        const random = Math.floor(Math.random() * data.length)
-        return data[random];
+        const newRandom = randomLoop()
+        this.random = newRandom
+        return data[newRandom];
     }
 }

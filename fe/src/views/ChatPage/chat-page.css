@@ -70,9 +70,25 @@ body {
   border-right: 1px solid dimgray;
   margin-right: 8px;
   padding-right: 8px;
+  overflow-y: auto;
+  height: 380px;
 }
-.wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list p {
-  margin: 0;
+.wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_me, .wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_not-me {
+  display: flex;
+  justify-content: flex-start;
+}
+.wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_me span, .wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_not-me span {
+  background: navajowhite;
+  padding: 4px;
+  border-radius: 8px;
+  margin: 2px 0;
+}
+.wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_not-me {
+  justify-content: flex-end;
+  text-align: right;
+}
+.wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__list .message_not-me span {
+  background: whitesmoke;
 }
 .wrapper_chat-page .chat-page__content .chat-page__content__grid .chat-page__content__grid__text .chat-page__content__grid__text__img {
   display: flex;
@@ -145,6 +161,13 @@ body {
 }
 .wrapper_chat-page .chat-page__content .chat-page__content__grid form .chat-page__content__grid__answer button:hover {
   transform: scale(1.075);
+}
+.wrapper_chat-page .chat-page__content .chat-page__content__grid form .chat-page__content__grid__answer button.chat-page__content__grid__answer__btn_dis {
+  background: #A1A1AA;
+}
+.wrapper_chat-page .chat-page__content .chat-page__content__grid form .chat-page__content__grid__answer button.chat-page__content__grid__answer__btn_dis:hover {
+  transform: none;
+  cursor: default;
 }
 
 /*# sourceMappingURL=chat-page.css.map */

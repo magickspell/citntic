@@ -1,5 +1,7 @@
 import {MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer} from "@nestjs/websockets";
 import {Server, Socket} from 'socket.io';
+import {EventsService} from "./events.service";
+import {query} from "express";
 
 const config = require('dotenv').config().parsed // config variables
 
@@ -12,38 +14,32 @@ const config = require('dotenv').config().parsed // config variables
 }) // for example all this comes to "localhost:4080/chat" (config in .env file)
 
 export class EventsGateway {
+    constructor(private readonly eventsService: EventsService) {
+    }
     @WebSocketServer() server: Server;
 
     @SubscribeMessage("ping")
     async handlePingMessagesGet(): Promise<void> {
-        console.log('ping come')
         this.server.emit("ping", 'ping-args');
         this.server.emit("pong", 'pong-args');
     }
 
     @SubscribeMessage("message")
-    async handleMessage(): Promise<void> {
-        console.log('message come')
-        this.server.emit("message", 'message-args');
+    async handleMessage(@MessageBody() data: { text: string }): Promise<void> {
+        console.log(data.text)
+        this.server.emit("message:bot", this.eventsService.nextPhrase());
     }
 
     @SubscribeMessage("messages:get")
     async handleMessagesGet(): Promise<void> {
-        console.log('message:get come')
-        this.server.emit("messages", 'messages');
+        // get past messages
     }
 
-    @SubscribeMessage("messages:post")
-    async handleMessagesPost(): Promise<void> {
-        console.log('message:post come')
-        //this.server.emit("message:post");
+    @SubscribeMessage("message:post")
+    async handleMessagesPost(client: Socket, ...args: any[]): Promise<void> {
+        console.log(client.request.method)
+        console.log(client.data)
         this.server.emit("messages", 'messages');
-    }
-
-    @SubscribeMessage('events')
-    async identity(@MessageBody() data: string): Promise<string> {
-        console.log('events come')
-        return data;
     }
 
     afterInit(server: Server) {
@@ -61,7 +57,7 @@ export class EventsGateway {
     }
 
     handleDisconnect(client: Socket) {
-        console.log(`client connected: ${client.handshake.query.userName as string}`)
+        console.log(`client DISconnected: ${client.handshake.query.userName as string}`)
         console.log(`socketId: ${client.id}`)
         client.broadcast.emit("log", `${client} disconnected`);
     }
